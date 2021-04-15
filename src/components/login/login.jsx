@@ -1,21 +1,31 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import "./style.css";
 import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import "../../configdb/firebaseConfig";
+import { connect } from "react-redux";
 import { sha256 } from "js-sha256";
+import authUser from "../../store/actions/index";
+
 // import { connect } from "react-redux";
 
-const HandleFormLogin = (values) => {
+async function HandleFormLogin(values, authUserId) {
   const { email } = values;
   const password = sha256(values.password);
-  firebase.auth().signInWithEmailAndPassword(email, password);
-};
+  await firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((result) => {
+      authUserId(result.user.uid);
+    });
+}
 
 const LogIn = (props) => {
-  console.log(props);
+  const history = useHistory();
+  const { authUserId } = props;
   return (
     <>
       <div>
@@ -35,7 +45,7 @@ const LogIn = (props) => {
           }}
           onSubmit={(values, { setSubmitting }) => {
             values.isLoggedIn = true;
-            HandleFormLogin(values);
+            HandleFormLogin(values, authUserId).then(() => history.push("/"));
             setSubmitting(false);
           }}
         >
@@ -95,4 +105,12 @@ const LogIn = (props) => {
   );
 };
 
-export default LogIn;
+const mapDispatchToProps = {
+  authUserId: authUser,
+};
+
+const mapStateToProps = (state) => ({
+  userId: state.user.userId,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

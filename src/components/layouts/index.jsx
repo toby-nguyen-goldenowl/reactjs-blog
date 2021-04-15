@@ -9,10 +9,12 @@ import HeaderComponent from "./header";
 import FooterComponent from "./footer";
 const { Content } = Layout;
 
-const LayoutComponent = ({ children }) => (
+const LayoutComponent = (props) => (
+  /* eslint-disable react/jsx-no-comment-textnodes */
+
   <>
     <HeaderComponent />
-    <Content>{children}</Content>
+    <Content>{props.children}</Content>
     <FooterComponent />
   </>
 );
