@@ -1,0 +1,19 @@
+.right {
+  float: right;
+}
+.ant-layout-header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: white;
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 16px;
+  height: 56px;
+}
+
+.ant-layout-header .ant-menu {
+  height: 56px;
+  line-height: inherit;
+}

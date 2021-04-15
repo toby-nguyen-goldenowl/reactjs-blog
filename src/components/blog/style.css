@@ -1,0 +1,20 @@
+.itemContent {
+}
+.imgContent {
+  height: 273px;
+}
+.content {
+  padding: 1rem;
+}
+.content .author {
+  margin-bottom: 8px;
+  text-align: left;
+}
+.content-text {
+  padding-left: 40px;
+}
+.main {
+  padding: 16px 0 0 0;
+  margin: 56px auto 0;
+  width: 651px;
+}
