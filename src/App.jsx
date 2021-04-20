@@ -6,7 +6,7 @@ import "firebase/auth";
 import "./configdb/firebaseConfig";
 import { useDispatch, useSelector } from "react-redux";
 import RouteConfig, { Routes } from "./routes";
-import authUserId from "./store/actions/index";
+import { authUser } from "./store/actions/index";
 function App() {
   let userId = useSelector((state) => state.user.userId);
   const dispatch = useDispatch();
@@ -15,10 +15,10 @@ function App() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         userId = user.uid;
-        dispatch(authUserId(userId));
+        dispatch(authUser(userId));
       } else {
         userId = undefined;
-        dispatch(authUserId(userId));
+        dispatch(authUser(userId));
       }
     });
   }, [userId]);

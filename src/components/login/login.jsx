@@ -8,7 +8,7 @@ import "firebase/auth";
 import "../../configdb/firebaseConfig";
 import { useDispatch } from "react-redux";
 import { sha256 } from "js-sha256";
-import authUser from "../../store/actions/index";
+import { authUser } from "../../store/actions/index";
 
 // import { connect } from "react-redux";
 

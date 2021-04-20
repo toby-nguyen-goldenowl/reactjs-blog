@@ -2,7 +2,7 @@
 import * as types from "../constants/actionTypes";
 // const authUser = createAction(types.AUTH_USERID);
 
-const authUser = (payload) => ({
+export const authUser = (payload) => ({
   type: types.AUTH_USERID,
   payload,
 });
@@ -11,4 +11,7 @@ const authUser = (payload) => ({
 //   user,
 // });
 
-export default authUser;
+export const readBlog = (payload) => ({
+  type: types.READ_DATA,
+  payload,
+});
