@@ -1,15 +1,25 @@
-// import React from "react";
-// import { Link } from "react-router-dom";
+import React from "react";
+import { useHistory } from "react-router-dom";
+import firebase from "firebase/app";
+import "./style.css";
+import "firebase/database";
+import "firebase/auth";
+import "../../configdb/firebaseConfig";
 
-// const ConFirmLogout = () => (
-//   <div>
-//     <h2 className="text">Are you sure you want to sign out? </h2>
-//     <div>
-//       <Link to="/" className="MyLink">
-//         Back SignIn
-//       </Link>
-//     </div>
-//   </div>
-// );
-
-// export default ConFirmLogout;
+export default function ConFirmLogout() {
+  const history = useHistory();
+  function clickLogOut() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => history.push("/"));
+  }
+  return (
+    <div className="confirmLogout">
+      <h2 className="text">Are you sure you want to sign out? </h2>
+      <button type="button" onClick={clickLogOut}>
+        yes
+      </button>
+    </div>
+  );
+}

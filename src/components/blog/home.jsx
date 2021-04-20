@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-import * as env from "../../constant-env/index";
+import * as env from "../../constant/index";
 const Home = (props) => {
   const url = `${env.URL_PUBLIC}/img/imgblog1.png`;
   return (

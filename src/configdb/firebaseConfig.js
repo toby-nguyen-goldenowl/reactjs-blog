@@ -1,15 +1,15 @@
 import firebase from "firebase/app";
 import "firebase/database";
-import * as env from "../constant-env/index";
+import * as env from "../constant/index";
 
 const firebaseConfig = {
   apiKey: env.API_KEY,
-  authDomain: "blog-a87a5.firebaseapp.com",
-  projectId: "blog-a87a5",
-  storageBucket: "blog-a87a5.appspot.com",
-  messagingSenderId: "845741781236",
-  appId: "1:845741781236:web:5c4f5ee16784a3c8bf6ea1",
-  measurementId: "G-3YMCGJ9CKP",
+  authDomain: env.AUTH_DOMAIN,
+  projectId: env.PROJECT_ID,
+  storageBucket: env.STORAGE_BUCKET,
+  messagingSenderId: env.SENDER_ID,
+  appId: env.APP_ID,
+  measurementId: env.MEASUREMENT_ID,
 };
 // Initialize Firebase
 const firebaseConnect = firebase.initializeApp(firebaseConfig);

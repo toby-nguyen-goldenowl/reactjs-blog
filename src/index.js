@@ -8,7 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
 import App from "./App";
-import * as env from "./constant-env/index";
+import * as env from "./constant/index";
 import store from "./store/index";
 
 Sentry.init({

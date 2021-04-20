@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
-import authUser from "../actions/index";
+// import authUser from "../actions/index";
+import * as types from "../constants/actionTypes";
 
 // const initialState = {
 //   userId: undefined,
@@ -25,7 +26,7 @@ const userReducer = createReducer(
     loading: true,
   },
   (builder) => {
-    builder.addCase(authUser, (state, action) => {
+    builder.addCase(types.AUTH_USERID, (state, action) => {
       // "mutate" the array by calling push()
       const newState = { ...state };
       newState.userId = action.payload;
