@@ -23,6 +23,9 @@ const LogIn = () => {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         dispatch(authUser(result.user.uid));
+      })
+      .then(() => {
+        history.push("/");
       });
   }, []);
 
@@ -45,7 +48,7 @@ const LogIn = () => {
           }}
           onSubmit={(values, { setSubmitting }) => {
             values.isLoggedIn = true;
-            HandleFormLogin(values).then(() => history.push("/"));
+            HandleFormLogin(values);
             setSubmitting(false);
           }}
         >

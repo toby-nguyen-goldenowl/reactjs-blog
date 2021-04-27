@@ -10,6 +10,9 @@ const LoginComponent = lazy(() => import("./components/login/login"));
 const LogupComponent = lazy(() => import("./components/login/logup"));
 const LogoutComponent = lazy(() => import("./components/login/confirm"));
 const CreateBlogComponent = lazy(() => import("./components/blog/createblog"));
+const BlogitemDetail = lazy(() => import("./components/blog/BlogitemDetail"));
+const MyBlog = lazy(() => import("./components/blog/Myblog"));
+const MySaved = lazy(() => import("./components/blog/Mysaved"));
 
 // const LoadingComponent = lazy(() => import("./components/common/Loading"));
 
@@ -41,6 +44,21 @@ export const Routes = {
     path: "/createblog",
     layout: LayoutComponent,
     component: CreateBlogComponent,
+  },
+  MyBlog: {
+    path: "/my-blog",
+    layout: LayoutComponent,
+    component: MyBlog,
+  },
+  BlogContent: {
+    path: "/blog/:id",
+    layout: LayoutComponent,
+    component: BlogitemDetail,
+  },
+  MySaved: {
+    path: "/my-saved",
+    layout: LayoutComponent,
+    component: MySaved,
   },
   Home: {
     path: "/",
