@@ -1,0 +1,58 @@
+.text-white {
+  color: white;
+}
+.itemContent {
+}
+.imgContent {
+  height: 273px;
+}
+.content {
+  padding: 1rem;
+}
+.content .author {
+  margin-bottom: 8px;
+  text-align: left;
+}
+.content-text {
+  padding-left: 40px;
+}
+.main {
+  padding: 16px 0 0 0;
+  margin: 56px auto 0;
+  width: 651px;
+}
+/* create blog */
+.createblog {
+  padding: 16px 0 0 0;
+  margin: 56px auto;
+  width: 651px;
+  padding: 4rem;
+  background-color: rgb(211, 208, 208);
+}
+.form-group {
+  margin: 32px 64px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.labelContent {
+  display: inline-block;
+  float: left;
+  clear: left;
+  text-align: left;
+}
+.form-control {
+  display: inline-block;
+  float: left;
+}
+.ip-form-control {
+  display: inline-block;
+  float: left;
+  width: 500px;
+}
+.modal-dialog {
+  padding: 16px 0 0 0;
+  width: 651px;
+}
+.ant-layout-content {
+  margin: 100px;
+}

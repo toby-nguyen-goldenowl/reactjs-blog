@@ -1,25 +1,37 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { Suspense, useEffect } from "react";
 import "./App.css";
-
+import { BrowserRouter as Router } from "react-router-dom";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "./configdb/firebaseConfig";
+import { useDispatch, useSelector } from "react-redux";
+import RouteConfig, { Routes } from "./routes";
+import { authUser } from "./store/actions/index";
 function App() {
+  let userId = useSelector((state) => state.user.userId);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        userId = user.uid;
+        dispatch(authUser(userId));
+      } else {
+        userId = undefined;
+        dispatch(authUser(userId));
+      }
+    });
+  }, [userId]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <div className="App">
+          <div>
+            <div>{RouteConfig({ routes: Routes })}</div>
+          </div>
+        </div>
+      </Suspense>
+    </Router>
   );
 }
 

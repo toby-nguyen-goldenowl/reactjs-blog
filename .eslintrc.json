@@ -9,6 +9,22 @@
     "react/prefer-stateless-function": "off",
     "semi": ["error", "always"],
     "no-unused-vars": ["error", { "vars": "all" }],
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
     "jsx-a11y/no-noninteractive-element-interactions": [
       "error",
       {
