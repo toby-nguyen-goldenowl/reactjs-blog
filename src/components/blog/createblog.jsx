@@ -34,18 +34,27 @@ const CreateBlog = () => {
   const authorRef = React.createRef();
   const titleRef = React.createRef();
   const contentRef = React.createRef();
+  const tagsRef = React.createRef();
+
   const userId = useSelector((state) => state.user.userId);
   const [isSuccess, getIsSuccess] = useState(false);
   const createPost = (e) => {
     e.preventDefault();
+    const today = new Date();
+    const date = `${today.toLocaleString("default", {
+      month: "long",
+    })} ${today.getDate()}`;
+    const arrTag = tagsRef.current.value.split(",");
     const blogId = new Date().valueOf();
     const dataUser = firebase.database().ref(`blogs/${blogId}`);
     dataUser
       .set({
         userId,
         author: authorRef.current.value,
+        tags: arrTag,
         title: titleRef.current.value,
         body: contentRef.current.value,
+        datetime: date,
       })
       .then(() => getIsSuccess(true));
   };
@@ -69,7 +78,20 @@ const CreateBlog = () => {
             />
           </div>
         </div>
-
+        <div className="form-group">
+          <label htmlFor="tags" className="labelContent">
+            Tags:
+          </label>
+          <div className="ip-form-control">
+            <input
+              id="tags"
+              type="text"
+              ref={tagsRef}
+              className="form-control"
+              placeholder="tags.."
+            />
+          </div>
+        </div>
         <div className="form-group">
           <label htmlFor="author" className="labelContent">
             Author:

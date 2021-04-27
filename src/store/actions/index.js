@@ -15,3 +15,8 @@ export const readBlog = (payload) => ({
   type: types.READ_DATA,
   payload,
 });
+
+export const saveBlog = (payload) => ({
+  type: types.SAVE_DATA,
+  payload,
+});

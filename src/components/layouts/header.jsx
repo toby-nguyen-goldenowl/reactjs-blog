@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Layout, Menu, Input, Button } from "antd";
-import { CodeOutlined } from "@ant-design/icons";
+import { HomeOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./style.css";
@@ -41,7 +41,7 @@ const HeaderComponent = () => {
         >
           <Menu.Item key="icon">
             <Link to="/">
-              <CodeOutlined />
+              <HomeOutlined />
             </Link>
           </Menu.Item>
           <Menu.Item key="search">
@@ -57,6 +57,11 @@ const HeaderComponent = () => {
               <Menu.Item key="createblog" className="right">
                 <Link to="/createblog">
                   <Button>Create Blog</Button>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="myblogs" className="right">
+                <Link to="/my-blog">
+                  <Button>My Blog</Button>
                 </Link>
               </Menu.Item>
             </>

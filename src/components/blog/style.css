@@ -10,7 +10,6 @@
   padding: 1rem;
 }
 .content .author {
-  margin-bottom: 8px;
   text-align: left;
 }
 .content-text {
@@ -54,5 +53,148 @@
   width: 651px;
 }
 .ant-layout-content {
-  margin: 100px;
+  margin: 70px 0px;
+}
+
+.headerItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.subHeaderItem {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+.avatarImg {
+  border-radius: 100%;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+.author {
+  font-size: 16px;
+}
+.datetime {
+  color: #64707d;
+  font-size: 14px;
+}
+.tags {
+  display: inline-block;
+}
+.element-a-title {
+  color: black;
+}
+.element-a-title :hover {
+  color: blue;
+}
+.element-a-tags {
+  color: darkgrey;
+}
+.content-text {
+  text-align: justify;
+}
+/* blogitemdetail */
+
+.page-item-container {
+  width: 1280px;
+  padding: 16px;
+  margin: 0 auto;
+}
+.page-content-inner {
+  text-align: justify;
+}
+.sidebar-left {
+  width: 100px;
+  position: fixed;
+  height: 100%;
+  display: inline-block;
+  text-align: center;
+  text-align: justify;
+}
+.main-content {
+  width: 807px;
+  display: inline-block;
+  margin-left: 77px;
+  margin-bottom: 12px;
+  border: 2px solid red;
+  text-align: center;
+}
+.container-main-content {
+  width: 807px;
+  display: inline-block;
+  margin-left: 77px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.sidebar-right {
+  width: 345px;
+  position: fixed;
+  display: inline-block;
+  text-align: center;
+}
+.layout-content {
+  width: 807px;
+  height: 340px;
+}
+.title-item {
+  text-align: justify;
+  padding: 32px 64px 0;
+}
+.avatar-in-blogdetail {
+  display: block;
+  text-align: justify;
+}
+.title-tag-item {
+  margin: 0 0 16px 0;
+}
+
+/* blogitem */
+.bottom {
+  text-align: justify;
+}
+.details {
+  display: inline-block;
+  margin: 6px 6px 6px 0;
+  margin-right: 139px;
+}
+.save {
+  display: inline-block;
+  float: right;
+  margin: 6px 6px 6px 0;
+  margin-right: 139px;
+}
+/* .border-content {
+  border: 2px solid red;
+} */
+/* comment css */
+.section-comment {
+  width: 807px;
+  display: inline-block;
+  margin-left: 77px;
+  margin-bottom: 12px;
+  border: 2px solid red;
+  text-align: center;
+  float: left;
+}
+
+.container-form-comment {
+  float: left;
+}
+.avatar-in-comment {
+  display: inline-block;
+  float: left;
+}
+
+.text-comment {
+  width: 754px;
+}
+.ip-submit-comment {
+  display: block;
+  text-align: right;
 }
