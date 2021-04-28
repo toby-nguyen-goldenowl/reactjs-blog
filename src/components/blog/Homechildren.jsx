@@ -1,5 +1,7 @@
 import React from "react";
-
-const HomeChildrenComponent = (props) => <>{props.children}</>;
+import { MDXProvider } from "@mdx-js/react";
+const HomeChildrenComponent = ({ children }) => (
+  <MDXProvider>{children}</MDXProvider>
+);
 
 export default HomeChildrenComponent;
