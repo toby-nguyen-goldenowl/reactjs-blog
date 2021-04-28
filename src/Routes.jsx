@@ -2,7 +2,6 @@ import React, { lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 import uuid from "react-uuid";
 // import { connect } from "react-redux";
-import { MDXProvider } from "@mdx-js/react";
 
 const HomeComponent = lazy(() => import("./components/blog/Home"));
 const LayoutComponent = lazy(() => import("./components/layouts/Index"));
@@ -101,14 +100,14 @@ export default function RouteConfig({ routes }) {
         //   );
         // }
         if (!route.auth) {
-          const Layout = route.layout || MDXProvider;
+          const Layout = route.layout || React.Fragment;
           return (
             <Route
               key={uuid()}
               path={route.path}
               /* eslint-disable react/jsx-props-no-spreading */
               render={(props) => (
-                <Layout {...props}>
+                <Layout>
                   <route.component {...props}>
                     {route.routes
                       ? RouteConfig({ routes: route.routes })

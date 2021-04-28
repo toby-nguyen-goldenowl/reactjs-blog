@@ -8,17 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 import RouteConfig, { Routes } from "./Routes";
 import { authUser } from "./store/actions/index";
 function App() {
-  let userId = useSelector((state) => state.user.userId);
+  const userId = useSelector((state) => state.user.userId);
   const dispatch = useDispatch();
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        userId = user.uid;
-        dispatch(authUser(userId));
+        dispatch(authUser(user.uid));
       } else {
-        userId = undefined;
-        dispatch(authUser(userId));
+        dispatch(authUser(undefined));
       }
     });
   }, [userId]);
