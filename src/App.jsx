@@ -5,7 +5,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "./configdb/firebaseConfig";
 import { useDispatch, useSelector } from "react-redux";
-import RouteConfig, { Routes } from "./routes";
+import RouteConfig, { Routes } from "./Routes";
 import { authUser } from "./store/actions/index";
 function App() {
   let userId = useSelector((state) => state.user.userId);

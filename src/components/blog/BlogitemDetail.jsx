@@ -106,47 +106,47 @@ const BlogitemDetail = () => {
           </div>
         </div>
         <div className="sidebar-right">right</div>
-      </div>
-      <div className="section-comment">
-        <h1 className="header-comment">Comment</h1>
-        <div className="container-comment">
-          <div className="avatar-in-comment">
-            <a href="/">
-              <span>
-                <img
-                  src="https://res.cloudinary.com/practicaldev/image/fetch/s--h8DxsnjW--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/577896/343fde9f-609b-419b-95d1-07d16b320a37.png"
-                  alt=""
-                  className="avatarImg"
-                />
-              </span>
-            </a>
-          </div>
-          <div className="container-form-comment">
-            <form
-              style={{
-                float: "left",
-              }}
-              onSubmit={handleSubmit}
-            >
-              <label>
-                <textarea
-                  className="text-comment"
-                  value={text}
-                  onChange={handleChange}
-                />
-              </label>
-              <div className="ip-submit-comment">
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
-              </div>
-              <div>
-                {data[id].comments &&
-                  Object.values(data[id].comments).map((value) => (
-                    <div key={uuid()}>{value}</div>
-                  ))}
-              </div>
-            </form>
+        <div className="section-comment">
+          <h1 className="header-comment">Comment</h1>
+          <div className="container-comment">
+            <div className="avatar-in-comment">
+              <a href="/">
+                <span>
+                  <img
+                    src="https://res.cloudinary.com/practicaldev/image/fetch/s--h8DxsnjW--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/577896/343fde9f-609b-419b-95d1-07d16b320a37.png"
+                    alt=""
+                    className="avatarImg"
+                  />
+                </span>
+              </a>
+            </div>
+            <div className="container-form-comment">
+              <form
+                style={{
+                  float: "left",
+                }}
+                onSubmit={handleSubmit}
+              >
+                <label>
+                  <textarea
+                    className="text-comment"
+                    value={text}
+                    onChange={handleChange}
+                  />
+                </label>
+                <div className="ip-submit-comment">
+                  <button type="submit" className="btn btn-primary">
+                    Submit
+                  </button>
+                </div>
+                <div>
+                  {data[id].comments &&
+                    Object.values(data[id].comments).map((value) => (
+                      <div key={uuid()}>{value}</div>
+                    ))}
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

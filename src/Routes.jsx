@@ -3,16 +3,19 @@ import { Switch, Route } from "react-router-dom";
 import uuid from "react-uuid";
 // import { connect } from "react-redux";
 
-const HomeComponent = lazy(() => import("./components/blog/home"));
-const LayoutComponent = lazy(() => import("./components/layouts/index"));
-const ListingComponent = lazy(() => import("./components/blog/listing"));
-const LoginComponent = lazy(() => import("./components/login/login"));
-const LogupComponent = lazy(() => import("./components/login/logup"));
-const LogoutComponent = lazy(() => import("./components/login/confirm"));
-const CreateBlogComponent = lazy(() => import("./components/blog/createblog"));
+const HomeComponent = lazy(() => import("./components/blog/Home"));
+const LayoutComponent = lazy(() => import("./components/layouts/Index"));
+const ListingComponent = lazy(() => import("./components/blog/Listing"));
+const LoginComponent = lazy(() => import("./components/login/Login"));
+const LogupComponent = lazy(() => import("./components/login/Signup"));
+const LogoutComponent = lazy(() => import("./components/login/Confirm"));
+const CreateBlogComponent = lazy(() => import("./components/blog/Createblog"));
 const BlogitemDetail = lazy(() => import("./components/blog/BlogitemDetail"));
 const MyBlog = lazy(() => import("./components/blog/Myblog"));
 const MySaved = lazy(() => import("./components/blog/Mysaved"));
+const HomeChildrenComponent = lazy(() =>
+  import("./components/blog/Homechildren")
+);
 
 // const LoadingComponent = lazy(() => import("./components/common/Loading"));
 
@@ -24,51 +27,51 @@ const MySaved = lazy(() => import("./components/blog/Mysaved"));
 // import LogoutComponent from "./components/login/logout";
 
 export const Routes = {
-  Login: {
-    path: "/login",
-    auth: false,
-    layout: LayoutComponent,
-    component: LoginComponent,
-  },
-  Logup: {
-    path: "/logup",
-    layout: LayoutComponent,
-    component: LogupComponent,
-  },
-  Logout: {
-    path: "/logout",
-    layout: LayoutComponent,
-    component: LogoutComponent,
-  },
-  CreateBlog: {
-    path: "/createblog",
-    layout: LayoutComponent,
-    component: CreateBlogComponent,
-  },
-  MyBlog: {
-    path: "/my-blog",
-    layout: LayoutComponent,
-    component: MyBlog,
-  },
-  BlogContent: {
-    path: "/blog/:id",
-    layout: LayoutComponent,
-    component: BlogitemDetail,
-  },
-  MySaved: {
-    path: "/my-saved",
-    layout: LayoutComponent,
-    component: MySaved,
-  },
   Home: {
     path: "/",
     layout: LayoutComponent,
-    component: HomeComponent,
+    component: HomeChildrenComponent,
     routes: {
       Listing: {
         path: "/listings",
-        // layout: React.Fragment,
         component: ListingComponent,
+      },
+      MyBlog: {
+        path: "/my-blog",
+        component: MyBlog,
+      },
+      Login: {
+        path: "/login",
+        auth: false,
+        layout: LayoutComponent,
+        component: LoginComponent,
+      },
+      Logup: {
+        path: "/logup",
+        layout: LayoutComponent,
+        component: LogupComponent,
+      },
+      Logout: {
+        path: "/logout",
+        layout: LayoutComponent,
+        component: LogoutComponent,
+      },
+      CreateBlog: {
+        path: "/createblog",
+        layout: LayoutComponent,
+        component: CreateBlogComponent,
+      },
+      BlogContent: {
+        path: "/blog/:id",
+        component: BlogitemDetail,
+      },
+      MySaved: {
+        path: "/my-saved",
+        component: MySaved,
+      },
+      Default: {
+        path: "/",
+        component: HomeComponent,
       },
     },
   },
@@ -98,6 +101,7 @@ export default function RouteConfig({ routes }) {
         // }
         if (!route.auth) {
           const Layout = route.layout || React.Fragment;
+          const Component = route.component || React.Fragment;
           return (
             <Route
               key={uuid()}
@@ -105,11 +109,11 @@ export default function RouteConfig({ routes }) {
               /* eslint-disable react/jsx-props-no-spreading */
               render={(props) => (
                 <Layout {...props}>
-                  <route.component {...props}>
+                  <Component {...props}>
                     {route.routes
                       ? RouteConfig({ routes: route.routes })
                       : null}
-                  </route.component>
+                  </Component>
                 </Layout>
               )}
             />
