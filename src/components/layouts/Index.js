@@ -4,8 +4,8 @@ import "antd/dist/antd.css";
 // const HeaderComponent = lazy(() => import("./header"));
 // const FooterComponent = lazy(() => import("./footer"));
 
-import HeaderComponent from "./header";
-import FooterComponent from "./footer";
+import HeaderComponent from "./Header";
+import FooterComponent from "./Footer";
 const { Content } = Layout;
 const LayoutComponent = (props) => (
   <>
