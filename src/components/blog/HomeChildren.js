@@ -1,7 +1,4 @@
 import React from "react";
-import { MDXProvider } from "@mdx-js/react";
-const HomeChildrenComponent = ({ children }) => (
-  <MDXProvider>{children}</MDXProvider>
-);
+const HomeChildrenComponent = ({ children }) => <>{children}</>;
 
 export default HomeChildrenComponent;
