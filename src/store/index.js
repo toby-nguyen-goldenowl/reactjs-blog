@@ -11,7 +11,9 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import thunk from "redux-thunk";
 import rootReducer from "./reducers/rootReducer";
+
 const migrations = {
   1: (state) =>
     // migration clear out device state
@@ -36,16 +38,18 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export default () => {
-  const store = configureStore({
-    reducer: persistedReducer,
-    middleware: getDefaultMiddleware({
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: [
+    thunk,
+    ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-  });
+  ],
+});
 
-  const persistor = persistStore(store);
-  return { store, persistor };
-};
+const persistor = persistStore(store);
+
+export default () => ({ store, persistor });

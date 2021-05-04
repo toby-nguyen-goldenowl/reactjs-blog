@@ -1,38 +1,33 @@
 /* eslint-disable max-len */
 import React from "react";
-import firebase from "firebase/app";
-import "firebase/database";
-import "firebase/auth";
-import "../../configdb/firebaseConfig";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { useSelector } from "react-redux";
 import uuid from "react-uuid";
 import Tags from "./Tags";
+import {
+  handleSavedBlogItem,
+  handleLikeBlogItem,
+} from "../../store/actions/index";
 
-const Blogitem = (props) => {
+import { handleDateTime } from "../common/handleFunction/handleDate";
+
+const BlogItem = (props) => {
   const currentUserId = useSelector((state) => state.user.userId);
+
   const handleSave = (blogItem) => {
-    const dataBlogs = firebase.database().ref(`blogs/${props.id}`);
     const saved = blogItem.saved ? blogItem.saved : {};
     const copySaved = { ...saved };
     copySaved[currentUserId] = !copySaved[currentUserId];
-    dataBlogs.set({
-      ...blogItem,
-      saved: copySaved,
-    });
+    handleSavedBlogItem(blogItem, copySaved, props.id);
   };
   const handleLike = (blogItem) => {
-    const dataBlogs = firebase.database().ref(`blogs/${props.id}`);
     const likes = blogItem.likes ? blogItem.likes : {};
     const copyLikes = { ...likes };
     copyLikes[currentUserId] = !copyLikes[currentUserId];
-    // copyLikes.push(currentUserId);
-    dataBlogs.set({
-      ...blogItem,
-      likes: copyLikes,
-    });
+    handleLikeBlogItem(blogItem, copyLikes, props.id);
   };
+
   // const handleComment = () => <Redirect to={() => `/blog/${props.id}`} />;
   return (
     <div className="main-content">
@@ -52,7 +47,7 @@ const Blogitem = (props) => {
               <a href="/">{props.blogItem.author}</a>
             </div>
             <a href="/" className="datetime">
-              {props.blogItem.datetime}
+              {handleDateTime(props.blogItem.datetime)}
             </a>
           </div>
         </div>
@@ -120,4 +115,4 @@ const Blogitem = (props) => {
   );
 };
 
-export default Blogitem;
+export default BlogItem;
