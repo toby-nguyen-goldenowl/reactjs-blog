@@ -1,21 +1,23 @@
 // import { createAction } from "@reduxjs/toolkit";
+import { createAction } from "@reduxjs/toolkit";
 import * as types from "../constants/actionTypes";
 import * as services from "../../services/firebaseService";
-// const authUser = createAction(types.AUTH_USERID);
+export const authUser = createAction(types.AUTH_USERID);
+export const readBlog = createAction(types.READ_DATA);
 
-export const authUser = (payload) => ({
-  type: types.AUTH_USERID,
-  payload,
-});
+// export const authUser = (payload) => ({
+//   type: types.AUTH_USERID,
+//   payload,
+// });
 // const authUser = (user) => ({
 //   type: types.AUTH_USERID,
 //   user,
 // });
 
-export const readBlog = (payload) => ({
-  type: types.READ_DATA,
-  payload,
-});
+// export const readBlog = (payload) => ({
+//   type: types.READ_DATA,
+//   payload,
+// });
 
 export const handleSavedBlogItem = (blogItem, copySaved, id) => {
   services.handleSave(blogItem, copySaved, id);
@@ -43,5 +45,6 @@ export const handleCreatePost = (
 
 export const logIn = (email, password) => services.logIn(email, password);
 export const logOut = () => services.logOut();
+
 export const handleSignUp = (email, password) =>
   services.handleSignUp(email, password);

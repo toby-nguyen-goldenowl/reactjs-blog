@@ -14,7 +14,7 @@ import {
 } from "../../store/actions/index";
 import Tags from "./Tags";
 import { handleDateTime } from "../common/handleFunction/handleDate";
-import Loading from "../common/Loading";
+import Loading from "../../views/common/Loading";
 
 const BlogItemDetail = () => {
   const [text, setText] = useState("");

@@ -18,7 +18,7 @@ const HeaderComponent = () => {
           defaultSelectedKeys={["2"]}
         >
           <Menu.Item key="icon">
-            <Link to="/">
+            <Link to="/home">
               <HomeOutlined />
             </Link>
           </Menu.Item>

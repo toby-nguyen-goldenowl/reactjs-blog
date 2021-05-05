@@ -19,7 +19,7 @@ const NotifiSuccess = () => (
 
     <Modal.Footer>
       <Button variant="primary">
-        <Link to="/" className="text-white">
+        <Link to="/home" className="text-white">
           Home
         </Link>
       </Button>

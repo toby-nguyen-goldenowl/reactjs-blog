@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useEffect, useState } from "react";
-import "./style.css";
+import "../../components/blog/style.css";
 import { HomeOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import * as env from "../../constant/index";
 import { readBlog, readDataFromFireBase } from "../../store/actions/index";
 import Loading from "../common/Loading";
+import Blogitem from "../../components/blog/Blogitem";
+import { URL_PUBLIC } from "../../configdb";
 
-import Blogitem from "./Blogitem";
 const Home = (props) => {
-  const url = `${env.URL_PUBLIC}/img/imgblog1.png`;
+  const url = `${URL_PUBLIC}/img/imgblog1.png`;
   const data = useSelector((state) => state.blog.data);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -30,7 +30,7 @@ const Home = (props) => {
           <div className="page-content-inner">
             <div className="sidebar-left">
               <div>
-                <a href="/">
+                <a href="/home">
                   <HomeOutlined />
                   &nbsp;
                   <span style={{ color: "black" }}>Home</span>

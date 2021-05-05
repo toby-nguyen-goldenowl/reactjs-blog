@@ -8,8 +8,8 @@ import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
 import App from "./App";
-import * as env from "./constant/index";
-import store from "./store/index";
+import * as env from "./configdb/index";
+import { store, persistor } from "./store/index";
 
 Sentry.init({
   dsn: env.SENTRY_DSN,
@@ -22,8 +22,8 @@ Sentry.init({
 });
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store().store}>
-      <PersistGate loading="null" persistor={store().persistor}>
+    <Provider store={store}>
+      <PersistGate loading="null" persistor={persistor}>
         <App />
       </PersistGate>
     </Provider>

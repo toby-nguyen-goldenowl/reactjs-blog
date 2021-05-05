@@ -1,20 +1,20 @@
 import React, { lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 
-const HomeComponent = lazy(() => import("./components/blog/Home"));
+const Home = lazy(() => import("./views/blog/Home"));
 const LayoutComponent = lazy(() => import("./components/layouts/Index"));
 const LoginComponent = lazy(() => import("./components/login/Login"));
 const SignUpComponent = lazy(() => import("./components/login/Signup"));
 const LogoutComponent = lazy(() => import("./components/login/Confirm"));
 const CreateBlogComponent = lazy(() => import("./components/blog/Createblog"));
 const BlogitemDetail = lazy(() => import("./components/blog/BlogitemDetail"));
-const MyBlog = lazy(() => import("./components/blog/Myblog"));
-const MySaved = lazy(() => import("./components/blog/Mysaved"));
-const HomeChildrenComponent = lazy(() =>
-  import("./components/blog/HomeChildren")
-);
+const MyBlog = lazy(() => import("./views/blog/Myblog"));
+const MySaved = lazy(() => import("./views/blog/Mysaved"));
+const HomeChildrenComponent = lazy(() => import("./views/blog/HomeChildren"));
+const NotFound = lazy(() => import("./views/common/NotFound"));
+
 export const Routes = {
-  Home: {
+  Root: {
     path: "/",
     layout: LayoutComponent,
     component: HomeChildrenComponent,
@@ -47,9 +47,13 @@ export const Routes = {
         path: "/my-saved",
         component: MySaved,
       },
+      Home: {
+        path: "/home",
+        component: Home,
+      },
       Default: {
         path: "/",
-        component: HomeComponent,
+        component: NotFound,
       },
     },
   },

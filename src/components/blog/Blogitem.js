@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable max-len */
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useCallback } from "react";
+import { Link, useHistory } from "react-router-dom";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import Tags from "./Tags";
@@ -16,26 +16,41 @@ import { handleDateTime } from "../common/handleFunction/handleDate";
 
 const BlogItem = (props) => {
   const currentUserId = useSelector((state) => state.user.userId);
+  const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSave = (blogItem) => {
-    const saved = blogItem.saved ? blogItem.saved : {};
-    const copySaved = { ...saved };
-    copySaved[currentUserId] = !copySaved[currentUserId];
-    handleSavedBlogItem(blogItem, copySaved, props.id);
-    readDataFromFireBase().then((result) => {
-      dispatch(readBlog(result));
-    });
-  };
-  const handleLike = (blogItem) => {
-    const likes = blogItem.likes ? blogItem.likes : {};
-    const copyLikes = { ...likes };
-    copyLikes[currentUserId] = !copyLikes[currentUserId];
-    handleLikeBlogItem(blogItem, copyLikes, props.id);
-    readDataFromFireBase().then((result) => {
-      dispatch(readBlog(result));
-    });
-  };
+  const handleSave = useCallback(
+    (blogItem) => {
+      if (currentUserId) {
+        const saved = blogItem.saved ? blogItem.saved : {};
+        const copySaved = { ...saved };
+        copySaved[currentUserId] = !copySaved[currentUserId];
+        handleSavedBlogItem(blogItem, copySaved, props.id);
+        readDataFromFireBase().then((result) => {
+          dispatch(readBlog(result));
+        });
+      } else {
+        history.push("/login");
+      }
+    },
+    [props.blogItem]
+  );
+  const handleLike = useCallback(
+    (blogItem) => {
+      if (currentUserId) {
+        const likes = blogItem.likes ? blogItem.likes : {};
+        const copyLikes = { ...likes };
+        copyLikes[currentUserId] = !copyLikes[currentUserId];
+        handleLikeBlogItem(blogItem, copyLikes, props.id);
+        readDataFromFireBase().then((result) => {
+          dispatch(readBlog(result));
+        });
+      } else {
+        history.push("/login");
+      }
+    },
+    [props.blogItem]
+  );
 
   // const handleComment = () => <Redirect to={() => `/blog/${props.id}`} />;
   return (

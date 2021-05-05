@@ -64,8 +64,7 @@ export const logIn = async (email, password) => {
 };
 
 export const logOut = async () => {
-  const result = await firebase.auth().signOut();
-  return result;
+  await firebase.auth().signOut();
 };
 
 export const handleSignUp = async (email, password) => {
@@ -83,13 +82,3 @@ export const handleSignUp = async (email, password) => {
     .catch(() => false);
   return result;
 };
-
-// export const authUser = () => {
-//   const result = firebase.auth().onAuthStateChanged((user) => {
-//     if (user) {
-//       return user.uid;
-//     }
-//     return undefined;
-//   });
-//   return result;
-// };

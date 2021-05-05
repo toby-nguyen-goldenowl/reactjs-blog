@@ -19,7 +19,7 @@ const LogIn = () => {
         dispatch(authUser(result.user.uid));
       })
       .then(() => {
-        history.push("/");
+        history.push("/home");
       });
   }, []);
 

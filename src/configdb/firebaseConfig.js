@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/database";
-import * as env from "../constant/index";
+import * as env from "./index";
 
 const firebaseConfig = {
   apiKey: env.API_KEY,
