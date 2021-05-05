@@ -10,11 +10,11 @@ import { handleCreatePost } from "../../store/actions/index";
 const NotifiSuccess = () => (
   <Modal.Dialog>
     <Modal.Header closeButton>
-      <Modal.Title>Log Up</Modal.Title>
+      <Modal.Title>Blog</Modal.Title>
     </Modal.Header>
 
     <Modal.Body>
-      <p>You successfully registered your account </p>
+      <p>You successfully post Blog </p>
     </Modal.Body>
 
     <Modal.Footer>
@@ -26,6 +26,7 @@ const NotifiSuccess = () => (
     </Modal.Footer>
   </Modal.Dialog>
 );
+
 const CreateBlog = () => {
   // create refs
   const authorRef = React.createRef();

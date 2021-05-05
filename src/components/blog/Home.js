@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import { HomeOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import uuid from "react-uuid";
 import * as env from "../../constant/index";
 import { readBlog, readDataFromFireBase } from "../../store/actions/index";
 import Loading from "../common/Loading";
@@ -53,7 +52,7 @@ const Home = (props) => {
                     if (blogItem) {
                       return (
                         <Blogitem
-                          key={uuid()}
+                          key={key}
                           url={url}
                           blogItem={blogItem}
                           id={key}

@@ -55,3 +55,41 @@ export const createPost = async (
   });
   return data;
 };
+
+export const logIn = async (email, password) => {
+  const result = await firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password);
+  return result;
+};
+
+export const logOut = async () => {
+  const result = await firebase.auth().signOut();
+  return result;
+};
+
+export const handleSignUp = async (email, password) => {
+  const result = await firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then((value) => {
+      const dataUser = firebase.database().ref(`users/${value.user.uid}`);
+      dataUser.set({
+        email,
+      });
+      return true;
+      // window.location = "/signup/success-signin";
+    })
+    .catch(() => false);
+  return result;
+};
+
+// export const authUser = () => {
+//   const result = firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//       return user.uid;
+//     }
+//     return undefined;
+//   });
+//   return result;
+// };

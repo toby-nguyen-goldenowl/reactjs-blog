@@ -2,7 +2,6 @@
 import React from "react";
 import "./style.css";
 import { useSelector } from "react-redux";
-import uuid from "react-uuid";
 import Blogitem from "./Blogitem";
 import * as env from "../../constant/index";
 const MyBlog = (props) => {
@@ -20,11 +19,11 @@ const MyBlog = (props) => {
               {data &&
                 Object.keys(data).map((key) => {
                   const blogItem = data[key];
-                  if (blogItem) {
+                  if (blogItem && blogItem.saved) {
                     if (blogItem.saved[userId])
                       return (
                         <Blogitem
-                          key={uuid()}
+                          key={key}
                           url={url}
                           blogItem={blogItem}
                           id={key}

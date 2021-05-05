@@ -1,18 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import firebase from "firebase/app";
+import { logOut } from "../../services/firebaseService";
 import "./style.css";
-import "firebase/database";
-import "firebase/auth";
-import "../../configdb/firebaseConfig";
 
 export default function ConFirmLogout() {
   const history = useHistory();
   function clickLogOut() {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => history.push("/"));
+    logOut().then(() => history.push("/"));
   }
   return (
     <div className="confirmLogout">

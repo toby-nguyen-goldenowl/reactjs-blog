@@ -1,31 +1,21 @@
 import React, { useCallback } from "react";
 import { Formik } from "formik";
 import "./style.css";
-import firebase from "firebase/app";
-import "firebase/database";
-import "firebase/auth";
-import "../../configdb/firebaseConfig";
 import { sha256 } from "js-sha256";
-// import { Card } from "antd";
-// import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { handleSignUp } from "../../services/firebaseService";
 
 const LogUp = ({ children }) => {
-  const HandleFormLogup = useCallback((values) => {
+  const history = useHistory();
+  const handleFormSignup = useCallback((values) => {
     const { email } = values;
     const password = sha256(values.password);
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((value) => {
-        const dataUser = firebase.database().ref(`users/${value.user.uid}`);
-        dataUser.set({
-          email,
-        });
-        // window.location = "/signup/success-signin";
-      })
-      .catch(() => {
-        // window.location = "/signup/not-success-signin";
-      });
+    handleSignUp(email, password).then((result) => {
+      if (!result) {
+        return history.push("/signup");
+      }
+      return history.push("/");
+    });
   }, []);
 
   return (
@@ -53,7 +43,7 @@ const LogUp = ({ children }) => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            HandleFormLogup(values);
+            handleFormSignup(values);
             setSubmitting(false);
           }}
         >

@@ -1,31 +1,40 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable max-len */
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-import { useSelector } from "react-redux";
-import uuid from "react-uuid";
+import { useDispatch, useSelector } from "react-redux";
 import Tags from "./Tags";
 import {
   handleSavedBlogItem,
   handleLikeBlogItem,
+  readDataFromFireBase,
+  readBlog,
 } from "../../store/actions/index";
 
 import { handleDateTime } from "../common/handleFunction/handleDate";
 
 const BlogItem = (props) => {
   const currentUserId = useSelector((state) => state.user.userId);
+  const dispatch = useDispatch();
 
   const handleSave = (blogItem) => {
     const saved = blogItem.saved ? blogItem.saved : {};
     const copySaved = { ...saved };
     copySaved[currentUserId] = !copySaved[currentUserId];
     handleSavedBlogItem(blogItem, copySaved, props.id);
+    readDataFromFireBase().then((result) => {
+      dispatch(readBlog(result));
+    });
   };
   const handleLike = (blogItem) => {
     const likes = blogItem.likes ? blogItem.likes : {};
     const copyLikes = { ...likes };
     copyLikes[currentUserId] = !copyLikes[currentUserId];
     handleLikeBlogItem(blogItem, copyLikes, props.id);
+    readDataFromFireBase().then((result) => {
+      dispatch(readBlog(result));
+    });
   };
 
   // const handleComment = () => <Redirect to={() => `/blog/${props.id}`} />;
@@ -58,11 +67,9 @@ const BlogItem = (props) => {
             {props.blogItem.title}
           </Link>
         </h2>
-        {props.blogItem.tags.map((value) => {
+        {props.blogItem.tags.map((value, index) => {
           const hashtagValue = `#${value}`;
-          return (
-            <Tags key={uuid()} hashtagValue={hashtagValue} value={value} />
-          );
+          return <Tags key={index} hashtagValue={hashtagValue} value={value} />;
         })}
         <div className="bottom">
           <div className="details">

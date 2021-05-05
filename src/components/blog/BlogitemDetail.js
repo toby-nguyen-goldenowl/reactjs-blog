@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable max-len */
 import React, { useEffect, useState } from "react";
 
@@ -80,11 +81,11 @@ const BlogItemDetail = () => {
                 <div className="title-tag-item">
                   {data &&
                     data[id] &&
-                    data[id].tags.map((value) => {
+                    data[id].tags.map((value, index) => {
                       const hashtagValue = `#${value}`;
                       return (
                         <Tags
-                          key={uuid()}
+                          key={index}
                           hashtagValue={hashtagValue}
                           value={value}
                         />

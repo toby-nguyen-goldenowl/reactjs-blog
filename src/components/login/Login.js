@@ -2,25 +2,19 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import "./style.css";
-import firebase from "firebase/app";
-import "firebase/database";
-import "firebase/auth";
-import "../../configdb/firebaseConfig";
 import { useDispatch } from "react-redux";
 import { sha256 } from "js-sha256";
 import { authUser } from "../../store/actions/index";
-
+import { logIn } from "../../services/firebaseService";
 // import { connect } from "react-redux";
 
 const LogIn = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const HandleFormLogin = useCallback((values) => {
+  const handleFormLogin = useCallback((values) => {
     const { email } = values;
     const password = sha256(values.password);
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
+    logIn(email, password)
       .then((result) => {
         dispatch(authUser(result.user.uid));
       })
@@ -48,7 +42,7 @@ const LogIn = () => {
           }}
           onSubmit={(values, { setSubmitting }) => {
             values.isLoggedIn = true;
-            HandleFormLogin(values);
+            handleFormLogin(values);
             setSubmitting(false);
           }}
         >

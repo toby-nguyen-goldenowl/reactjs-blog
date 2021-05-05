@@ -2,7 +2,6 @@
 import React from "react";
 import "./style.css";
 import { useSelector } from "react-redux";
-import uuid from "react-uuid";
 import Blogitem from "./Blogitem";
 import * as env from "../../constant/index";
 const MyBlog = () => {
@@ -16,9 +15,7 @@ const MyBlog = () => {
       const blogItem = data[key];
       if (blogItem) {
         if (blogItem.userId === userId)
-          return (
-            <Blogitem key={uuid()} url={url} blogItem={blogItem} id={key} />
-          );
+          return <Blogitem key={key} url={url} blogItem={blogItem} id={key} />;
       }
       return null;
     })

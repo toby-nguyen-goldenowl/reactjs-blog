@@ -40,3 +40,8 @@ export const handleCreatePost = (
   body,
   datetime
 ) => services.createPost(blogId, userId, author, tags, title, body, datetime);
+
+export const logIn = (email, password) => services.logIn(email, password);
+export const logOut = () => services.logOut();
+export const handleSignUp = (email, password) =>
+  services.handleSignUp(email, password);

@@ -1,11 +1,10 @@
 import React, { lazy } from "react";
 import { Switch, Route } from "react-router-dom";
-import uuid from "react-uuid";
 
 const HomeComponent = lazy(() => import("./components/blog/Home"));
 const LayoutComponent = lazy(() => import("./components/layouts/Index"));
 const LoginComponent = lazy(() => import("./components/login/Login"));
-const LogupComponent = lazy(() => import("./components/login/Signup"));
+const SignUpComponent = lazy(() => import("./components/login/Signup"));
 const LogoutComponent = lazy(() => import("./components/login/Confirm"));
 const CreateBlogComponent = lazy(() => import("./components/blog/Createblog"));
 const BlogitemDetail = lazy(() => import("./components/blog/BlogitemDetail"));
@@ -14,7 +13,6 @@ const MySaved = lazy(() => import("./components/blog/Mysaved"));
 const HomeChildrenComponent = lazy(() =>
   import("./components/blog/HomeChildren")
 );
-
 export const Routes = {
   Home: {
     path: "/",
@@ -29,9 +27,9 @@ export const Routes = {
         path: "/login",
         component: LoginComponent,
       },
-      Logup: {
-        path: "/logup",
-        component: LogupComponent,
+      SignUp: {
+        path: "/signup",
+        component: SignUpComponent,
       },
       Logout: {
         path: "/logout",
@@ -59,21 +57,23 @@ export const Routes = {
 export default function RouteConfig({ routes }) {
   return (
     <Switch>
-      {Object.values(routes).map((route) => {
-        if (!route.auth) {
-          const Layout = route.layout || React.Fragment;
+      {Object.keys(routes).map((key) => {
+        if (!routes[key].auth) {
+          const Layout = routes[key].layout || React.Fragment;
+          const Component = routes[key].component || React.Fragment;
+
           return (
             <Route
-              key={uuid()}
-              path={route.path}
+              key={key}
+              path={routes[key].path}
               /* eslint-disable react/jsx-props-no-spreading */
               render={(props) => (
                 <Layout>
-                  <route.component {...props}>
-                    {route.routes
-                      ? RouteConfig({ routes: route.routes })
+                  <Component {...props}>
+                    {routes[key].routes
+                      ? RouteConfig({ routes: routes[key].routes })
                       : null}
-                  </route.component>
+                  </Component>
                 </Layout>
               )}
             />

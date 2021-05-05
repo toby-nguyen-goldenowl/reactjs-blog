@@ -46,8 +46,8 @@ const HeaderComponent = () => {
           ) : (
             <>
               <Menu.Item key="logup" className="right">
-                <Link to="/logup">
-                  <Button>Log Up</Button>
+                <Link to="/signup">
+                  <Button>Sign Up</Button>
                 </Link>
               </Menu.Item>
               <Menu.Item key="login" className="right">
