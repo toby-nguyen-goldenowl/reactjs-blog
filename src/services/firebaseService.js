@@ -19,11 +19,9 @@ export const handleLike = (blogItem, likes, id) => {
   });
 };
 
-export const readData = async () => {
+export const readDataFromFireBase = () => {
   const dataBlogs = firebase.database().ref("blogs");
-  const result = await dataBlogs
-    .once("value")
-    .then((snapshot) => snapshot.val());
+  const result = dataBlogs.once("value").then((snapshot) => snapshot.val());
   return result;
 };
 
@@ -35,17 +33,17 @@ export const handleComment = (data, comments, id) => {
   });
 };
 
-export const createPost = async (
+export const createPost = ({
   blogId,
   userId,
   author,
   tags,
   title,
   body,
-  datetime
-) => {
+  datetime,
+}) => {
   const dataUser = firebase.database().ref(`blogs/${blogId}`);
-  const data = await dataUser.set({
+  const data = dataUser.set({
     userId,
     author,
     tags,

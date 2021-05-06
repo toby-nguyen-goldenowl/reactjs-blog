@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-for */
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { handleCreatePost } from "../../store/actions/index";
+import { handleCreatePost } from "../../store/reducers/blogReducer";
 
 const NotifiSuccess = () => (
   <Modal.Dialog>
@@ -35,20 +35,25 @@ const CreateBlog = () => {
   const tagsRef = React.createRef();
 
   const userId = useSelector((state) => state.user.userId);
-  const [isSuccess, getIsSuccess] = useState(false);
+  const isSuccess = useSelector((state) => state.blog.isSuccess);
+
+  const dispatch = useDispatch();
+
   const createPost = (e) => {
     e.preventDefault();
-    const arrTag = tagsRef.current.value.split(",");
+    const tags = tagsRef.current.value.split(",");
     const blogId = new Date().valueOf();
-    handleCreatePost(
-      blogId,
-      userId,
-      authorRef.current.value,
-      arrTag,
-      titleRef.current.value,
-      contentRef.current.value,
-      blogId
-    ).then(() => getIsSuccess(true));
+    dispatch(
+      handleCreatePost({
+        blogId,
+        userId,
+        author: authorRef.current.value,
+        tags,
+        title: titleRef.current.value,
+        body: contentRef.current.value,
+        datetime: blogId,
+      })
+    );
   };
   return isSuccess ? (
     <NotifiSuccess />

@@ -8,9 +8,8 @@ import Tags from "./Tags";
 import {
   handleSavedBlogItem,
   handleLikeBlogItem,
-  readDataFromFireBase,
 } from "../../store/actions/index";
-import { readData } from "../../store/reducers/blogReducer";
+import { readData, fetchBlogData } from "../../store/reducers/blogReducer";
 
 import { handleDateTime } from "../common/handleFunction/handleDate";
 
@@ -26,7 +25,7 @@ const BlogItem = (props) => {
         const copySaved = { ...saved };
         copySaved[currentUserId] = !copySaved[currentUserId];
         handleSavedBlogItem(blogItem, copySaved, props.id);
-        readDataFromFireBase().then((result) => {
+        fetchBlogData().then((result) => {
           dispatch(readData(result));
         });
       } else {
@@ -42,7 +41,7 @@ const BlogItem = (props) => {
         const copyLikes = { ...likes };
         copyLikes[currentUserId] = !copyLikes[currentUserId];
         handleLikeBlogItem(blogItem, copyLikes, props.id);
-        readDataFromFireBase().then((result) => {
+        fetchBlogData().then((result) => {
           dispatch(readData(result));
         });
       } else {

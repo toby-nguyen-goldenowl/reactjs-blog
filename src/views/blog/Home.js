@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../../components/blog/style.css";
 import { HomeOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { readDataFromFireBase } from "../../store/actions/index";
-import { readData } from "../../store/reducers/blogReducer";
-
+// import { readDataFromFireBase } from "../../store/actions/index";
+import { fetchBlogData } from "../../store/reducers/blogReducer";
 import Loading from "../common/Loading";
 import Blogitem from "../../components/blog/Blogitem";
 import { URL_PUBLIC } from "../../constant";
@@ -14,14 +13,10 @@ const Home = (props) => {
   const url = `${URL_PUBLIC}/img/imgblog1.png`;
   const data = useSelector((state) => state.blog.data);
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
+  const loading = useSelector((state) => state.blog.loading);
 
   useEffect(() => {
-    readDataFromFireBase()
-      .then((result) => {
-        dispatch(readData(result));
-      })
-      .then(() => setLoading(false));
+    dispatch(fetchBlogData());
   }, []);
   return (
     <>

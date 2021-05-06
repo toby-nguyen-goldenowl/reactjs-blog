@@ -7,11 +7,8 @@ import { useParams } from "react-router-dom";
 import "./style.css";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import uuid from "react-uuid";
-import {
-  readDataFromFireBase,
-  handleSubmitComment,
-} from "../../store/actions/index";
-import { readData } from "../../store/reducers/blogReducer";
+import { handleSubmitComment } from "../../store/actions/index";
+import { fetchBlogData } from "../../store/reducers/blogReducer";
 
 import Tags from "./Tags";
 import { handleDateTime } from "../common/handleFunction/handleDate";
@@ -23,15 +20,12 @@ const BlogItemDetail = () => {
 
   const { id } = useParams();
   const data = useSelector((state) => state.blog.data, shallowEqual);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (loading) {
-      readDataFromFireBase()
-        .then((result) => {
-          dispatch(readData(result));
-        })
-        .then(() => setLoading(false));
+      dispatch(fetchBlogData()).then(() => setLoading(false));
     }
   }, [id]);
 
@@ -50,9 +44,7 @@ const BlogItemDetail = () => {
     const idComment = new Date().valueOf();
     copycomments[idComment] = textComment;
     handleSubmitComment(data, copycomments, id);
-    readDataFromFireBase().then((result) => {
-      dispatch(readData(result));
-    });
+    dispatch(fetchBlogData());
     setText("");
     return null;
   };

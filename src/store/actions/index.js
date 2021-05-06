@@ -31,17 +31,7 @@ export const handleSubmitComment = (blogItem, copyComments, id) => {
   services.handleComment(blogItem, copyComments, id);
 };
 
-export const readDataFromFireBase = () => services.readData();
-
-export const handleCreatePost = (
-  blogId,
-  userId,
-  author,
-  tags,
-  title,
-  body,
-  datetime
-) => services.createPost(blogId, userId, author, tags, title, body, datetime);
+// export const readDataFromFireBase = () => services.readData();
 
 export const logIn = (email, password) => services.logIn(email, password);
 export const logOut = () => services.logOut();
