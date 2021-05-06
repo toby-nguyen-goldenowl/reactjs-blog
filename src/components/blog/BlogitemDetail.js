@@ -7,8 +7,11 @@ import { useParams } from "react-router-dom";
 import "./style.css";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import uuid from "react-uuid";
-import { handleSubmitComment } from "../../store/actions/index";
-import { fetchBlogData } from "../../store/reducers/blogReducer";
+// import { handleSubmitComment } from "../../store/actions/index";
+import {
+  fetchBlogData,
+  handleSubmitComment,
+} from "../../store/reducers/blogReducer";
 
 import Tags from "./Tags";
 import { handleDateTime } from "../common/handleFunction/handleDate";
@@ -25,7 +28,9 @@ const BlogItemDetail = () => {
 
   useEffect(() => {
     if (loading) {
-      dispatch(fetchBlogData()).then(() => setLoading(false));
+      dispatch(fetchBlogData()).then(() => {
+        setLoading(false);
+      });
     }
   }, [id]);
 
@@ -43,8 +48,7 @@ const BlogItemDetail = () => {
     const copycomments = { ...comments };
     const idComment = new Date().valueOf();
     copycomments[idComment] = textComment;
-    handleSubmitComment(data, copycomments, id);
-    dispatch(fetchBlogData());
+    dispatch(handleSubmitComment({ data, copycomments, id }));
     setText("");
     return null;
   };

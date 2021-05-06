@@ -27,9 +27,9 @@ export const handleLikeBlogItem = (blogItem, copyLikes, id) => {
   services.handleLike(blogItem, copyLikes, id);
 };
 
-export const handleSubmitComment = (blogItem, copyComments, id) => {
-  services.handleComment(blogItem, copyComments, id);
-};
+// export const handleSubmitComment = (blogItem, copyComments, id) => {
+//   services.handleComment(blogItem, copyComments, id);
+// };
 
 // export const readDataFromFireBase = () => services.readData();
 

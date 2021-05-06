@@ -4,6 +4,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   createPost,
   readDataFromFireBase,
+  handleComment,
 } from "../../services/firebaseService";
 
 // const blogReducer = createReducer(
@@ -29,6 +30,14 @@ export const handleCreatePost = createAsyncThunk(
   async (params) => {
     const response = await createPost(params);
     return response;
+  }
+);
+
+export const handleSubmitComment = createAsyncThunk(
+  "blogs/handleComment",
+  async (params, thunkAPI) => {
+    await handleComment(params);
+    thunkAPI.dispatch(fetchBlogData());
   }
 );
 
@@ -85,6 +94,24 @@ const blogReducer = createSlice({
       newState.isSuccess = false;
       return newState;
     },
+    // blogs/handleComment
+    // [handleSubmitComment.fulfilled]: (state, action) => {
+    //   const newState = { ...state };
+    //   newState.data = action.payload;
+    //   newState.loading = false;
+    //   return newState;
+    // },
+    // [handleSubmitComment.rejected]: (state, action) => {
+    //   const newState = { ...state };
+    //   newState.loading = false;
+    //   newState.error = action.error;
+    //   return newState;
+    // },
+    // [handleSubmitComment.pending]: (state) => {
+    //   const newState = { ...state };
+    //   newState.loading = true;
+    //   return newState;
+    // },
   },
 });
 

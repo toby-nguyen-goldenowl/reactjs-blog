@@ -25,7 +25,7 @@ export const readDataFromFireBase = () => {
   return result;
 };
 
-export const handleComment = (data, comments, id) => {
+export const handleComment = ({ data, copycomments: comments, id }) => {
   const dataBlog = firebase.database().ref(`blogs/${id}`);
   dataBlog.set({
     ...data[id],
