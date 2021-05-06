@@ -9,7 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import App from "./App";
 import { store, persistor } from "./store/index";
-import { SENTRY_DSN } from "./configdb";
+import { SENTRY_DSN } from "./constant";
 
 Sentry.init({
   dsn: SENTRY_DSN,

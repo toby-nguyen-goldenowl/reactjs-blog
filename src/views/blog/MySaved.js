@@ -3,7 +3,7 @@ import React from "react";
 import "../../components/blog/style.css";
 import { useSelector } from "react-redux";
 import Blogitem from "../../components/blog/Blogitem";
-import { URL_PUBLIC } from "../../configdb";
+import { URL_PUBLIC } from "../../constant";
 
 const MyBlog = (props) => {
   const data = useSelector((state) => state.blog.data);

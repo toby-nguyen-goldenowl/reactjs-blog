@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
-import "../configdb/firebaseConfig";
+import "../config/firebase";
 
 export const handleSave = (blogItem, saved, id) => {
   const dataBlogs = firebase.database().ref(`blogs/${id}`);

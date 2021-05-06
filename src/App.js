@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
 // import firebase from "firebase/app";
 import "firebase/auth";
-import "./configdb/firebaseConfig";
+import "./config/firebase";
 // import { useDispatch, useSelector } from "react-redux";
 import RouteConfig, { Routes } from "./Routes";
 // import { authUser } from "./store/actions/index";

@@ -8,10 +8,11 @@ import "./style.css";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import uuid from "react-uuid";
 import {
-  readBlog,
   readDataFromFireBase,
   handleSubmitComment,
 } from "../../store/actions/index";
+import { readData } from "../../store/reducers/blogReducer";
+
 import Tags from "./Tags";
 import { handleDateTime } from "../common/handleFunction/handleDate";
 import Loading from "../../views/common/Loading";
@@ -28,7 +29,7 @@ const BlogItemDetail = () => {
     if (loading) {
       readDataFromFireBase()
         .then((result) => {
-          dispatch(readBlog(result));
+          dispatch(readData(result));
         })
         .then(() => setLoading(false));
     }
@@ -50,7 +51,7 @@ const BlogItemDetail = () => {
     copycomments[idComment] = textComment;
     handleSubmitComment(data, copycomments, id);
     readDataFromFireBase().then((result) => {
-      dispatch(readBlog(result));
+      dispatch(readData(result));
     });
     setText("");
     return null;

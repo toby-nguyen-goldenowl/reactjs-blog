@@ -8,7 +8,7 @@ import {
   PROJECT_ID,
   SENDER_ID,
   STORAGE_BUCKET,
-} from ".";
+} from "../constant";
 
 const firebaseConfig = {
   apiKey: API_KEY,

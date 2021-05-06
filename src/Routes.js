@@ -8,8 +8,8 @@ const SignUpComponent = lazy(() => import("./components/login/Signup"));
 const LogoutComponent = lazy(() => import("./components/login/Confirm"));
 const CreateBlogComponent = lazy(() => import("./components/blog/Createblog"));
 const BlogitemDetail = lazy(() => import("./components/blog/BlogitemDetail"));
-const MyBlog = lazy(() => import("./views/blog/Myblog"));
-const MySaved = lazy(() => import("./views/blog/Mysaved"));
+const MyBlog = lazy(() => import("./views/blog/MyBlog"));
+const MySaved = lazy(() => import("./views/blog/MySaved"));
 const HomeChildrenComponent = lazy(() => import("./views/blog/HomeChildren"));
 const NotFound = lazy(() => import("./views/common/NotFound"));
 

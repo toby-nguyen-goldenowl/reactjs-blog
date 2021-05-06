@@ -1,6 +1,5 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 // import authUser from "../actions/index";
-import * as types from "../constants/actionTypes";
 
 // const initialState = {
 //   userId: undefined,
@@ -20,19 +19,37 @@ import * as types from "../constants/actionTypes";
 //   }
 // };
 
-const userReducer = createReducer(
-  {
-    userId: undefined,
-    loading: true,
-  },
-  (builder) => {
-    builder.addCase(types.AUTH_USERID, (state, action) => {
+// const userReducer = createReducer(
+//   {
+//     userId: undefined,
+//     loading: true,
+//   },
+//   (builder) => {
+//     builder.addCase(types.AUTH_USERID, (state, action) => {
+//       // "mutate" the array by calling push()
+//       const newState = { ...state };
+//       newState.userId = action.payload;
+//       newState.loading = false;
+//       return newState;
+//     });
+//   }
+// );
+const initialState = { userId: undefined };
+
+const userReducer = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    authUser: (state, action) => {
       // "mutate" the array by calling push()
       const newState = { ...state };
       newState.userId = action.payload;
       newState.loading = false;
       return newState;
-    });
-  }
-);
-export default userReducer;
+    },
+  },
+});
+
+export const { authUser } = userReducer.actions;
+
+export default userReducer.reducer;

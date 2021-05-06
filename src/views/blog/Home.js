@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import "../../components/blog/style.css";
 import { HomeOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { readBlog, readDataFromFireBase } from "../../store/actions/index";
+import { readDataFromFireBase } from "../../store/actions/index";
+import { readData } from "../../store/reducers/blogReducer";
+
 import Loading from "../common/Loading";
 import Blogitem from "../../components/blog/Blogitem";
-import { URL_PUBLIC } from "../../configdb";
+import { URL_PUBLIC } from "../../constant";
 
 const Home = (props) => {
   const url = `${URL_PUBLIC}/img/imgblog1.png`;
@@ -17,7 +19,7 @@ const Home = (props) => {
   useEffect(() => {
     readDataFromFireBase()
       .then((result) => {
-        dispatch(readBlog(result));
+        dispatch(readData(result));
       })
       .then(() => setLoading(false));
   }, []);

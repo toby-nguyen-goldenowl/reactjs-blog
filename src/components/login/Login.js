@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import "./style.css";
 import { useDispatch } from "react-redux";
 import { sha256 } from "js-sha256";
-import { authUser } from "../../store/actions/index";
+import { authUser } from "../../store/reducers/userReducer";
 import { logIn } from "../../services/firebaseService";
 // import { connect } from "react-redux";
 

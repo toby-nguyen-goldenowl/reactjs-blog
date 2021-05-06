@@ -1,9 +1,9 @@
 // import { createAction } from "@reduxjs/toolkit";
-import { createAction } from "@reduxjs/toolkit";
-import * as types from "../constants/actionTypes";
+// import { createAction } from "@reduxjs/toolkit";
+// import * as types from "../../constant/actionTypes";
 import * as services from "../../services/firebaseService";
-export const authUser = createAction(types.AUTH_USERID);
-export const readBlog = createAction(types.READ_DATA);
+// export const authUser = createAction(types.AUTH_USERID);
+// export const readBlog = createAction(types.READ_DATA);
 
 // export const authUser = (payload) => ({
 //   type: types.AUTH_USERID,

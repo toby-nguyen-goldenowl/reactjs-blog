@@ -1,7 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { authUser, logOut } from "../../store/actions/index";
+import { logOut } from "../../store/actions/index";
+import { authUser } from "../../store/reducers/userReducer";
+
 import "./style.css";
 
 export default function ConFirmLogout() {
