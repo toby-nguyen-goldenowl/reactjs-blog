@@ -8,11 +8,11 @@ import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
 import App from "./App";
-import * as env from "./configdb/index";
 import { store, persistor } from "./store/index";
+import { SENTRY_DSN } from "./configdb";
 
 Sentry.init({
-  dsn: env.SENTRY_DSN,
+  dsn: SENTRY_DSN,
   integrations: [new Integrations.BrowserTracing()],
 
   // Set tracesSampleRate to 1.0 to capture 100%
