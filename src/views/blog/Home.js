@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import "../../components/blog/style.css";
 import { HomeOutlined, UnorderedListOutlined } from "@ant-design/icons";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 // import { readDataFromFireBase } from "../../store/actions/index";
 import { fetchBlogData } from "../../store/reducers/blogReducer";
 import Loading from "../common/Loading";
@@ -11,13 +11,20 @@ import { URL_PUBLIC } from "../../constant";
 
 const Home = (props) => {
   const url = `${URL_PUBLIC}/img/imgblog1.png`;
-  const data = useSelector((state) => state.blog.data);
+  const data = useSelector((state) => state.blog.data, shallowEqual);
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.blog.loading);
 
-  useEffect(() => {
-    dispatch(fetchBlogData());
-  }, []);
+  useEffect(async () => {
+    console.log(1);
+    if (loading) {
+      try {
+        await dispatch(fetchBlogData());
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  }, [data]);
   return (
     <>
       {loading ? (

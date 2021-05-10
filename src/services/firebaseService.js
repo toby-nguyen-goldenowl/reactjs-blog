@@ -3,7 +3,7 @@ import "firebase/database";
 import "firebase/auth";
 import "../config/firebase";
 
-export const handleSave = (blogItem, saved, id) => {
+export const handleSave = ({ blogItem, copySaved: saved, id }) => {
   const dataBlogs = firebase.database().ref(`blogs/${id}`);
   dataBlogs.set({
     ...blogItem,
@@ -11,7 +11,7 @@ export const handleSave = (blogItem, saved, id) => {
   });
 };
 
-export const handleLike = (blogItem, likes, id) => {
+export const handleLike = ({ blogItem, copyLikes: likes, id }) => {
   const dataBlogs = firebase.database().ref(`blogs/${id}`);
   dataBlogs.set({
     ...blogItem,

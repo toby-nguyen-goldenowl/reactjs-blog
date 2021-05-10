@@ -3,9 +3,9 @@ import { Switch, Route } from "react-router-dom";
 
 const Home = lazy(() => import("./views/blog/Home"));
 const LayoutComponent = lazy(() => import("./components/layouts/Index"));
-const LoginComponent = lazy(() => import("./components/login/Login"));
+const SignInComponent = lazy(() => import("./components/login/Login"));
 const SignUpComponent = lazy(() => import("./components/login/Signup"));
-const LogoutComponent = lazy(() => import("./components/login/Confirm"));
+const SignOutComponent = lazy(() => import("./components/login/Confirm"));
 const CreateBlogComponent = lazy(() => import("./components/blog/Createblog"));
 const BlogitemDetail = lazy(() => import("./components/blog/BlogitemDetail"));
 const MyBlog = lazy(() => import("./views/blog/MyBlog"));
@@ -25,7 +25,7 @@ export const Routes = {
       },
       Login: {
         path: "/login",
-        component: LoginComponent,
+        component: SignInComponent,
       },
       SignUp: {
         path: "/signup",
@@ -33,10 +33,10 @@ export const Routes = {
       },
       Logout: {
         path: "/logout",
-        component: LogoutComponent,
+        component: SignOutComponent,
       },
       CreateBlog: {
-        path: "/createblog",
+        path: "/create-blog",
         component: CreateBlogComponent,
       },
       BlogContent: {

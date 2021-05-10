@@ -7,15 +7,15 @@ import { handleSignUp } from "../../services/firebaseService";
 
 const LogUp = ({ children }) => {
   const history = useHistory();
-  const handleFormSignup = useCallback((values) => {
+  const handleFormSignup = useCallback(async (values) => {
     const { email } = values;
     const password = sha256(values.password);
-    handleSignUp(email, password).then((result) => {
-      if (!result) {
-        return history.push("/signup");
-      }
-      return history.push("/");
-    });
+    try {
+      await handleSignUp(email, password);
+      history.push("/home");
+    } catch (error) {
+      alert(error.message);
+    }
   }, []);
 
   return (

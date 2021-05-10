@@ -11,16 +11,16 @@ import { logIn } from "../../services/firebaseService";
 const LogIn = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const handleFormLogin = useCallback((values) => {
+  const handleFormLogin = useCallback(async (values) => {
     const { email } = values;
     const password = sha256(values.password);
-    logIn(email, password)
-      .then((result) => {
-        dispatch(authUser(result.user.uid));
-      })
-      .then(() => {
-        history.push("/home");
-      });
+    try {
+      const result = await logIn(email, password);
+      dispatch(authUser(result.user.uid));
+      history.push("/home");
+    } catch (error) {
+      alert(error.message);
+    }
   }, []);
 
   return (

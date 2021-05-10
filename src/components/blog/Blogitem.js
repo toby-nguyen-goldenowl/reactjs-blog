@@ -8,9 +8,7 @@ import Tags from "./Tags";
 import {
   handleSavedBlogItem,
   handleLikeBlogItem,
-} from "../../store/actions/index";
-import { readData, fetchBlogData } from "../../store/reducers/blogReducer";
-
+} from "../../store/reducers/blogReducer";
 import { handleDateTime } from "../common/handleFunction/handleDate";
 
 const BlogItem = (props) => {
@@ -19,31 +17,38 @@ const BlogItem = (props) => {
   const dispatch = useDispatch();
 
   const handleSave = useCallback(
-    (blogItem) => {
+    async (blogItem) => {
       if (currentUserId) {
         const saved = blogItem.saved ? blogItem.saved : {};
         const copySaved = { ...saved };
         copySaved[currentUserId] = !copySaved[currentUserId];
-        handleSavedBlogItem(blogItem, copySaved, props.id);
-        fetchBlogData().then((result) => {
-          dispatch(readData(result));
-        });
+        try {
+          await dispatch(
+            handleSavedBlogItem({ blogItem, copySaved, id: props.id })
+          );
+        } catch (error) {
+          alert(error.message);
+        }
       } else {
         history.push("/login");
       }
     },
     [props.blogItem]
   );
+
   const handleLike = useCallback(
-    (blogItem) => {
+    async (blogItem) => {
       if (currentUserId) {
         const likes = blogItem.likes ? blogItem.likes : {};
         const copyLikes = { ...likes };
         copyLikes[currentUserId] = !copyLikes[currentUserId];
-        handleLikeBlogItem(blogItem, copyLikes, props.id);
-        fetchBlogData().then((result) => {
-          dispatch(readData(result));
-        });
+        try {
+          await dispatch(
+            handleLikeBlogItem({ blogItem, copyLikes, id: props.id })
+          );
+        } catch (error) {
+          alert(error.message);
+        }
       } else {
         history.push("/login");
       }

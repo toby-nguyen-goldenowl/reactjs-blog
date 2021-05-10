@@ -33,7 +33,7 @@ const HeaderComponent = () => {
                 </Link>
               </Menu.Item>
               <Menu.Item key="createblog" className="right">
-                <Link to="/createblog">
+                <Link to="/create-blog">
                   <Button>Create Blog</Button>
                 </Link>
               </Menu.Item>
