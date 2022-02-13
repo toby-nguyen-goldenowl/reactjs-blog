@@ -19,6 +19,7 @@ const firebaseConfig = {
   appId: APP_ID,
   measurementId: MEASUREMENT_ID,
 };
+
 // Initialize Firebase
 const firebaseConnect = firebase.initializeApp(firebaseConfig);
 export default firebaseConnect;

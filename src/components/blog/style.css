@@ -198,3 +198,7 @@
   display: block;
   text-align: right;
 }
+
+.search-item {
+  display: flex;
+}

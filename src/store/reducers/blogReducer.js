@@ -34,6 +34,14 @@ export const handleLikeBlogItem = createAsyncThunk(
     thunkAPI.dispatch(fetchBlogData());
   }
 );
+export const handleSavedBlogItem = createAsyncThunk(
+  "blogs/handleSave",
+  async (params) => {
+    await handleSave(params);
+    const response = await readDataFromFireBase();
+    return response;
+  }
+);
 
 const initialState = { data: {}, loading: true, error: "" };
 
@@ -85,35 +93,23 @@ const blogReducer = createSlice({
       const newState = { ...state };
       return newState;
     },
-    // blogs/handleComment
-    // [handleSubmitComment.fulfilled]: (state, action) => {
-    //   const newState = { ...state };
-    //   newState.data = action.payload;
-    //   newState.loading = false;
-    //   return newState;
-    // },
-    // [handleSubmitComment.rejected]: (state, action) => {
-    //   const newState = { ...state };
-    //   newState.loading = false;
-    //   newState.error = action.error;
-    //   return newState;
-    // },
-    // [handleSubmitComment.pending]: (state) => {
-    //   const newState = { ...state };
-    //   newState.loading = true;
-    //   return newState;
-    // },
+    [handleSavedBlogItem.fulfilled]: (state, action) => {
+      const newState = { ...state };
+      newState.data = action.payload;
+      return newState;
+    },
+    [handleSavedBlogItem.rejected]: (state, action) => {
+      const newState = { ...state };
+      newState.error = action.error;
+      return newState;
+    },
+    [handleSavedBlogItem.pending]: (state) => {
+      const newState = { ...state };
+      return newState;
+    },
   },
 });
 
 export const { readData } = blogReducer.actions;
-
-export const handleSavedBlogItem = createAsyncThunk(
-  "blogs/handleSave",
-  async (params, thunkAPI) => {
-    await handleSave(params);
-    await thunkAPI.dispatch(fetchBlogData());
-  }
-);
 
 export default blogReducer.reducer;

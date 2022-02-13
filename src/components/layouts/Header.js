@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Layout, Menu, Input, Button } from "antd";
+import { Layout, Menu, Button } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./style.css";
+import InputHeader from "../blog/InputHeader";
 const { Header } = Layout;
 
 const HeaderComponent = () => {
@@ -23,7 +24,7 @@ const HeaderComponent = () => {
             </Link>
           </Menu.Item>
           <Menu.Item key="search">
-            <Input placeholder="Search" />
+            <InputHeader />
           </Menu.Item>
           {userId ? (
             <>
